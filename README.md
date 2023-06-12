@@ -41,6 +41,11 @@
 
 <br>
 
+## Windows protected your PC
+THe application might refuse to run because Windows will assume this is malicious. The fix is pretty simple, click on "More Info" and click on "Run Anyway"
+<br>
+Is that safe? Yes, it is. Windows protects your PC because this is an unsigned executable from an external source. If you're feeling a little paranoid, you can build it yourself with the instructions below!
+
 ## ❓ Can I get banned?
 
 Not likely. Unless you go around telling everyone you have an instalocker. Don't boast it or flaunt it and use it reasonably.
