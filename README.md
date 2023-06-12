@@ -1,6 +1,5 @@
 
-![image](https://github.com/SuppliedOrange/VALORANT-Instalocker/assets/70258998/e802f80c-e56b-4695-8342-7a8c5bd38e40)
-
+![image](https://github.com/SuppliedOrange/VALORANT-Instalocker/assets/70258998/000c238b-c72e-4682-abc6-90fca7d2cbda)
 
 # VALORANT Instalocker
  ✨A VALORANT Instalocker with a clean GUI
