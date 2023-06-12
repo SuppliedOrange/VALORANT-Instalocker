@@ -1,0 +1,4 @@
+This is a reminder to myself because I will almost certainly forget how any of this works
+
+1) Add agent codes to main.py and web/json/agents.json
+2) Add agent banner and preview in web/assets/images
