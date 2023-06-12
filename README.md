@@ -34,14 +34,14 @@
 
 - If an error occurs try:
     1) Selecting another agent and selecting the previous one again
-    2) Stopping and starting the instalock
+    2) Stopping and restarting the instalock
     3) Reopening the application
     4) Logging into VALORANT again
 
 <br>
 
 ## ❌ Windows protected your PC
-THe application might refuse to run because Windows will assume this is malicious.
+The application might refuse to run because Windows will assume this is malicious.
 <br>
 The fix is pretty simple, click on `More Info` and click on `Run Anyway`
 <br>
@@ -81,4 +81,5 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 - Heavily inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker)
 - Other than Gekko, all agent banners were made by [ExCharny](https://www.deviantart.com/excharny)
 - Most Agent previews (sprays and official stickers) are from the official [VALORANT giphy page](https://giphy.com/playvalorant)
+- [munibug](https://www.twitch.tv/munibug) gif by [@walfieee](https://twitter.com/walfieee)
 - Some of the agent previews come from unknown sources, let me know if you find their sources!
