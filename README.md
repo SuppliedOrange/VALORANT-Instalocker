@@ -82,4 +82,5 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 - Other than Gekko, all agent banners were made by [ExCharny](https://www.deviantart.com/excharny)
 - Most Agent previews (sprays and official stickers) are from the official [VALORANT giphy page](https://giphy.com/playvalorant)
 - [munibug](https://www.twitch.tv/munibug) gif by [@walfieee](https://twitter.com/walfieee)
+- Application Icon and Favicon by [u/Odeuo](https://www.reddit.com/user/Odeuo/)
 - Some of the agent previews come from unknown sources, let me know if you find their sources!
