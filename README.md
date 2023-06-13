@@ -76,6 +76,14 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 
 <br>
 
+## 🤷‍♀️ Support / Feedback:
+
+There's a small Discord server here for that: https://discord.gg/afTgK3qkPG. <br>
+You can also make an issue on this repository and I'll check it out. <br>
+The scrollbar isn't broken and doesn't make the application glitch. You just have skill issues.
+
+<br>
+
 ## 📰 Credits
 
 - Heavily inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker)
