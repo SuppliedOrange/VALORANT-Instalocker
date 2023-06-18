@@ -30,7 +30,7 @@ function fillAgentList() {
     
             let agent_div_thumbnail = document.createElement("img");
             agent_div_thumbnail.className = "agent-thumb";
-            agent_div_thumbnail.src = `./assets/images/agent-banners/${ agent.toLowerCase() }.png`; // excharny to thank
+            agent_div_thumbnail.src = `./assets/images/agent-banners/${ agent.toLowerCase() }.png`;
     
             let agent_div_name = document.createElement("p");
             agent_div_name.innerText = agent;
