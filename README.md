@@ -78,8 +78,7 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 
 ## 🤷‍♀️ Support / Feedback:
 
-There's a small Discord server here for that: https://discord.gg/afTgK3qkPG. <br>
-You can also make an issue on this repository and I'll check it out. <br>
+You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively` <br>
 The scrollbar isn't broken and doesn't make the application glitch. You just have skill issues.
 
 <br>
