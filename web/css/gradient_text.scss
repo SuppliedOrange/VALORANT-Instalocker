@@ -1,0 +1,42 @@
+$color1: white;
+$color2: black;
+
+#main {
+	background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8);
+	background-size: 400% 400%;
+		animation: Gradient 1s ease infinite;
+
+}
+
+.gradient-text {
+	background: #12c2e9;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background-size: 200% 200%;
+	animation: Gradient 5s ease-in-out infinite;
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;		
+	width: 100%;
+	
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 100%;
+	}
+	20% {
+		background-position: 30% 90%;
+	}
+	40% {
+		background-position: 42% 50%;
+	}
+	60% {
+		background-position: 100% 55%;
+	}
+	80% {
+		background-position: 50% 50%;
+	}
+	100% {
+		background-position: 0% 100%;
+	}
+}

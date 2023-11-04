@@ -1,0 +1,140 @@
+@font-face {
+    font-family: Staatliches;
+    src: url(../assets/fonts/Staatliches-Regular.ttf)
+}
+
+@font-face {
+    font-family: Cantarell;
+    src: url(../assets/fonts/Cantarell-Regular.ttf)
+}
+
+body {
+
+    background-color: rgb(15, 14, 17) !important;
+    color: aliceblue !important;
+    overflow-y: hidden;
+    user-select: none;
+
+}
+
+#agents {
+
+	transition: transform 0.25s;
+	will-change: transform;
+
+    display: flex !important;
+	flex-direction: column !important;
+    flex: 100vh !important;
+    overflow-y: scroll;
+    overflow-x: hidden
+
+}
+
+.agent {
+
+    font-family: Staatliches;
+    font-size: 10vw;
+    margin-top: 10vw;
+    margin-right: 5vw;
+    text-shadow: 1px 2px 0 black;
+    position: relative;
+
+}
+
+.agent-thumb{
+
+    max-width: 40vw;
+    height: 7vw;
+    object-fit: cover;
+    object-position: 0vw -6vw;
+    position: absolute;
+    z-index: -1;
+    aspect-ratio: 20 / 3;
+    transform: skewY(5deg);
+    transition: transform 0.2s;
+
+}
+
+.agent:hover .agent-thumb {
+    transform: skewY(-5deg) scale(1.2);
+}
+
+.main-section-text {
+
+    font-family: Cantarell;
+    font-size: 4vw;
+
+}
+
+.agent_preview {
+
+    max-height: 15vw;
+    -webkit-filter: drop-shadow(0px 0px 0.4vw rgba(255, 255, 255, 0.8));
+    filter: drop-shadow(0px 0px 0.4vw rgba(255, 255, 255, 0.8));
+    margin-bottom: 2vw;
+    margin-top: 2vw
+    
+}
+
+.icon {
+
+    font-family: Cantarell;
+    background-color: transparent;
+    border: 0px;
+}
+
+#agents::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgb(15, 14, 17);
+	background-color: rgb(15, 14, 17);
+}
+
+#agents::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: rgb(15, 14, 17);
+    
+}
+
+#agents::-webkit-scrollbar-thumb
+{
+	background-color: #ffffff;
+    box-shadow: 0 0 2vh white, 0 0 4vh white, 0 0 5vh white;
+}
+
+.stop-button {
+    width: 10vw;
+    height: 5vh;
+    font-family: Cantarell;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    color: #ff9aff;
+    border: 1px solid#ff9aff;
+    box-shadow: 0 0 5px #ff9aff, 0 0 5px #ff9aff inset;
+    z-index: 1;
+}
+.stop-button:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: #ff9aff;
+    box-shadow:
+        0 0 20px  #ff9aff;
+    transition: all 0.3s ease;
+}
+.stop-button:hover {
+    color: #fff;
+}
+.stop-button:hover:after {
+    left: 0;
+    width: 100%;
+}

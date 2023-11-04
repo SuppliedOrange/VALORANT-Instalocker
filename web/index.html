@@ -1,0 +1,101 @@
+<html>
+
+    <head>
+
+        <title> VALORANT Instalocker </title>
+        
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="./css/gradient_text.scss">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+        <script type="text/javascript" src="./index.js"></script>
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        
+    </head>
+
+    <body>
+        
+        
+        <div class="d-flex flex-row">
+
+            <div class="d-flex flex-column">
+
+                <section id="agents">
+    
+                    <!-- AGENTS GO HERE -->
+        
+                </section>
+    
+            </div>
+    
+            <div class="d-flex flex-column flex-fill">
+
+                <div id="main2" class="d-flex flex-column flex-fill justify-content-center">
+        
+                    <section id="main">
+
+                        <div class="d-flex flex-row text-center">
+        
+                            <h1 id="status" class="gradient-text main-section-text fw-bold"> CHOOSE AN AGENT </h1>
+
+                        </div>
+
+                        <div class="d-flex flex-row">
+
+                            <img id='agent-preview' class="agent_preview mx-auto" src='./assets/images/slurp.gif'>
+
+                        </div>
+                        
+
+                        <div class="d-flex flex-row text-center">
+        
+                            <h1 id="chosen-agent" class="gradient-text main-section-text fw-bold"> ... </h1>
+
+                        </div>
+
+                        <div id="stop-button-flex-row" class="collapse">
+
+                            <div class="d-flex flex-row align-items-center text-center">
+
+                                <button class="stop-button mt-5" onclick="stopLocking()"> STOP </button>
+    
+                            </div>
+
+                        </div>
+        
+                    </section>
+        
+                </div>
+
+                <div class="d-flex flex-column justify-content-end align-items-center">
+
+                    <div id="socials" class="d-flex flex-row justify-content-around">
+
+                        <button id="instagram" class="icon" onclick="openInstagram()">
+
+                            <img src="./assets/images/socials/instagram.svg"></img>
+                            <p class="text-light" style="display: inline;"> kronsuki </p> </img>
+
+                        </button>
+
+                        &nbsp &nbsp
+
+                        <button id="github" class="icon" onclick="openGithub()">
+
+                            <img src="./assets/images/socials/github.svg"></img>
+                            <p class="text-light" style="display: inline;"> suppliedorange </p> </img>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
