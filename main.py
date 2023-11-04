@@ -7,7 +7,7 @@ from valclient.client import Client
 import webbrowser
 import os
 import psutil
-import json
+import requests
 
 """
 CONSTANTS
@@ -42,8 +42,7 @@ def get_agent_codes():
     """
     Fetches the agent codes from ./web/json/agents.json (localhost/json/agents.json)
     """
-    with open('./web/json/agents.json') as agents:
-        return json.load(agents)
+    return requests.get("http://localhost:4089/json/agents.json").json()
 
 def get_region():
     """
@@ -70,7 +69,7 @@ def errorAlert(line1, line2, time):
     eel.askUserToChooseAgent()
 
 
-@eel.expose
+@eel.expose 
 def stop_lock():
     """
     Change state from running to disabled to stop the locking process
@@ -181,8 +180,8 @@ INITIALIZING THE EEL APPLICATION
 """
 eel.init("web")
 
-# Try launching with chrome, otherwise launch it in their default browser.
+# Try launching with chrome, otherwise launch it in their default browser in port 4089
 try:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0,)
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089,)
 except OSError:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="default")
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089, mode="default")
