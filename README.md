@@ -63,7 +63,7 @@ Not likely. Unless you go around telling everyone you have an instalocker. Don't
 
 - For your convinience, simply use `install.bat` and then `build.bat` after downloading the repository for a smooth, automated process! After that, you're done. If you insist otherwise, follow ahead.
 
-- Use a python version lower than 3.12 or you'll end up with [this error](https://stackoverflow.com/questions/77232001/python-eel-module-unable-to-use-import-bottle-ext-websocket-as-wbs-modulenotfoun). I used 3.10.10.
+- Use a python version lower than 3.12 or you'll end up with [this error](https://stackoverflow.com/questions/77232001/python-eel-module-unable-to-use-import-bottle-ext-websocket-as-wbs-modulenotfoun). You also cannot use python 3.10.0 because there is a [pyinstaller issue](https://github.com/pyinstaller/pyinstaller/issues/6301) with it. I used 3.10.10.
 
 - Run `python -m pip install -r requirements.txt`
 
