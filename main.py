@@ -32,16 +32,18 @@ HOVER_DELAY = 0
 AGENT = None
 SEEN_MATCHES = []
 RUNNING = False
-
-# Fetch the agent names and codes.
-
-with open('./web/json/agents.json') as agents:
-    AGENT_CODES = json.load(agents)
+AGENT_CODES = {}
 
 """
 FUNCTIONS
 """
 
+def get_agent_codes():
+    """
+    Fetches the agent codes from ./web/json/agents.json (localhost/json/agents.json)
+    """
+    with open('./web/json/agents.json') as agents:
+        return json.load(agents)
 
 def get_region():
     """
@@ -88,6 +90,8 @@ def try_lock(agent):
     global RUNNING
     global AGENT
     global SEEN_MATCHES
+
+    AGENT_CODES = get_agent_codes()
 
     # if valorant isnt on, mock the user
     if not "VALORANT.exe" in (p.name() for p in psutil.process_iter()):
