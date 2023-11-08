@@ -182,6 +182,6 @@ eel.init("web")
 
 # Try launching with chrome, otherwise launch it in their default browser in port 4089
 try:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089,)
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089,) # 4098 will stay occupied if it errors. We switch the port. The app will run a skeleton on 4089. That's alright it'll be gone next restart or thru task manager. We'll switch to 4090
 except OSError:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089, mode="default")
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4090, mode="default")
