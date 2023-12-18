@@ -7,7 +7,6 @@ from valclient.client import Client
 import webbrowser
 import os
 import psutil
-import requests
 
 """
 CONSTANTS
@@ -24,7 +23,7 @@ INSTAGRAM = "https://www.instagram.com/kronsuki/"
 GITHUB = "https://github.com/SuppliedOrange/"
 
 # Customize this to your preference
-LOOP_DELAY = 4
+LOOP_DELAY = 4 # Do not set this to 0 unless you know what you're doing.
 LOCK_DELAY = 0
 HOVER_DELAY = 0
 
@@ -32,18 +31,39 @@ HOVER_DELAY = 0
 AGENT = None
 SEEN_MATCHES = []
 RUNNING = False
-AGENT_CODES = {}
+
+# All the codes right here so we don't need to fetch anything. This is also in web/json/agents.json so make changes in both places.
+# The reason this is here at all is because I failed to fetch from localhost:port/json/agents.json from within this file.
+AGENT_CODES = { 
+    "Jett": "add6443a-41bd-e414-f6ad-e58d267f4e95",
+    "Reyna": "a3bfb853-43b2-7238-a4f1-ad90e9e46bcc",
+    "Raze": "f94c3b30-42be-e959-889c-5aa313dba261",
+    "Yoru": "7f94d92c-4234-0a36-9646-3a87eb8b5c89",
+    "Phoenix": "eb93336a-449b-9c1b-0a54-a891f7921d69",
+    "Neon": "bb2a4828-46eb-8cd1-e765-15848195d751",
+    "Breach": "5f8d3a7f-467b-97f3-062c-13acf203c006",
+    "Skye": "6f2a04ca-43e0-be17-7f36-b3908627744d",
+    "Sova": "320b2a48-4d9b-a075-30f1-1f93a9b638fa",
+    "Kayo": "601dbbe7-43ce-be57-2a40-4abd24953621",
+    "Killjoy": "1e58de9c-4950-5125-93e9-a0aee9f98746",
+    "Cypher": "117ed9e3-49f3-6512-3ccf-0cada7e3823b",
+    "Sage": "569fdd95-4d10-43ab-ca70-79becc718b46",
+    "Chamber": "22697a3d-45bf-8dd7-4fec-84a9e28c69d7",
+    "Omen": "8e253930-4c05-31dd-1b6c-968525494517",
+    "Brimstone": "9f0d8ba9-4140-b941-57d3-a7ad57c6b417",
+    "Astra": "41fb69c1-4189-7b37-f117-bcaf1e96f1bf",
+    "Viper": "707eab51-4836-f488-046a-cda6bf494859",
+    "Fade": "dade69b4-4f5a-8528-247b-219e5a1facd6",
+    "Harbor": "95b78ed7-4637-86d9-7e41-71ba8c293152",
+    "Gekko": "e370fa57-4757-3604-3648-499e1f642d3f",
+    "Deadlock": "cc8b64c8-4b25-4ff9-6e7f-37b4da43d235",
+    "Iso": "0e38b510-41a8-5780-5e8f-568b2a4f2d6c"
+}
 
 """
 FUNCTIONS
 """
-
-def get_agent_codes():
-    """
-    Fetches the agent codes from ./web/json/agents.json (localhost/json/agents.json)
-    """
-    return requests.get("http://localhost:4089/json/agents.json").json()
-
+    
 def get_region():
     """
     Get the region code of the current game.
@@ -90,8 +110,6 @@ def try_lock(agent):
     global AGENT
     global SEEN_MATCHES
 
-    AGENT_CODES = get_agent_codes()
-
     # if valorant isnt on, mock the user
     if not "VALORANT.exe" in (p.name() for p in psutil.process_iter()):
         if RUNNING:
@@ -99,6 +117,7 @@ def try_lock(agent):
         return errorAlert("TURN VALORANT ON", "YOU CLOWN", 3)
 
     try:  # try and get the region code automatically
+        # print("Finding region...") # DEBUG
         region_code = get_region()
     except:
         if RUNNING:
@@ -117,7 +136,7 @@ def try_lock(agent):
     try:
         client = Client(region=region_code)  # Activate 1 instance
     except ValueError:
-        return errorAlert("COULD NOT FIND REGION", "TRY LOGGING IN AGAIN", 5)
+        return errorAlert("COULD NOT INITIALIZE", "A VALCLIENT", 5)
 
     client.activate()
     # print("Activated 1 instance") # DEBUG
@@ -174,14 +193,20 @@ def open_instagram():
 def open_github():
     webbrowser.open("https://github.com/SuppliedOrange/")
 
+def check_chrome_installed():
+    CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    return os.path.exists(CHROME_PATH)
 
 """
 INITIALIZING THE EEL APPLICATION
 """
 eel.init("web")
 
-# Try launching with chrome, otherwise launch it in their default browser in port 4089
-try:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089,)
-except OSError:
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=4089, mode="default")
+# Try launching with chrome, otherwise launch it in their default browser
+
+if check_chrome_installed():
+    # print("Starting eel with chrome") # DEBUG
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="chrome")
+else:
+    # print("Starting with default browser") # DEBUG
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="default")
