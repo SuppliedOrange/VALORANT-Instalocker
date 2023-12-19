@@ -6,6 +6,13 @@
 
 <br>
 
+## 📩 Installation
+[Link]: https://github.com/SuppliedOrange/VALORANT-Instalocker/releases/latest 'Latest Release'
+[Button Icon]: https://img.shields.io/badge/Releases-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
+[![Button Icon]][Link]
+
+<br>
+
 ## 🎡 Features
 
 - Select an agent, hop into a game and it instalocks before you even know it!
@@ -15,14 +22,6 @@
 - Clean and straightforward UI.
 - Fixed 4 second refresh limit to better prevent API abuse (maybe future feature to change it?)
 - Agent banners, agent previews and other stuff i put in because memes
-
-<br>
-
-## 📩 Installation
-[Link]: https://github.com/SuppliedOrange/VALORANT-Instalocker/releases/latest 'Latest Release'
-[Button Icon]: https://img.shields.io/badge/Releases-EF2D5E?style=for-the-badge&logoColor=white&logo=DocuSign
-[![Button Icon]][Link]
-
 
 <br>
 
