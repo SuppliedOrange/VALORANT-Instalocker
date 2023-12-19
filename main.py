@@ -23,7 +23,7 @@ INSTAGRAM = "https://www.instagram.com/kronsuki/"
 GITHUB = "https://github.com/SuppliedOrange/"
 
 # Customize this to your preference
-LOOP_DELAY = 4 # Do not set this to 0 unless you know what you're doing.
+LOOP_DELAY = 3 # Do not set this to 0 unless you know what you're doing.
 LOCK_DELAY = 0
 HOVER_DELAY = 0
 
