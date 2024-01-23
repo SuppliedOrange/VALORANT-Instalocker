@@ -55,7 +55,8 @@ Is that safe? Yes, it is. Windows protects your PC because this is an unsigned e
 
 Not likely. Unless you go around telling everyone you have an instalocker. Don't boast it or flaunt it and use it responsibly.
 <br>
-> [@deadly](https://github.com/deadly): With all programs like this, there is no guarantee that it's safe because using the VALORANT API in this manner is against Riot's Terms of Service. However, this program does not use an autoclicker to select the agent, read the game's memory, or change the game's files; therefore, the anticheat shouldn't be triggered. No suspensions have been reported so far from using this method of exploit. All things considered, I would use this only on an alt account if you don't want to risk the 7 day API abuse account suspension on your main, albeit unlikely. 
+> [@deadly](https://github.com/deadly): With all programs like this, there is no guarantee that it's safe because using the VALORANT API in this manner is against Riot's Terms of Service. However, this program does not use an autoclicker to select the agent, read the game's memory, or change the game's files; therefore, the anticheat shouldn't be triggered. No suspensions have been reported so far from using this method of exploit.
+Even if Riot happens to somehow detect this, you will only recieve a 7 day ban for API abuse. That's still unlikely to occur and hasn't happened yet.
 
 <br>
 
