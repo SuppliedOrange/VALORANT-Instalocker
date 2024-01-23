@@ -13,7 +13,7 @@
 - Allows you to switch between characters while instalocking
 - Stops instalocking and sending API requests as soon as an error is found
 - Clean and straightforward UI.
-- Fixed 4 second refresh limit to better prevent API abuse (maybe future feature to change it?)
+- Fixed 3 second refresh limit to better prevent API abuse (maybe future feature to change it?)
 - Agent banners, agent previews and other stuff i put in because memes
 
 <br>
