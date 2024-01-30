@@ -84,8 +84,10 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively` <br>
 The scrollbar isn't broken and doesn't make the application glitch. You just have skill issues.
-<br>
-Note that I do not plan on developing this further, but I will maintain the code and update agents as time passes. I am also not responsible for **misuse** of this product, I do not condone using this and this only exists as a proof of concept and as an educational resource.
+
+#### Notes
++ I do not plan on developing this further, but I will maintain the code and update agents- this will continue to work.
++ I am also not responsible for **misuse** of this product, I do not condone using this and this only exists as an educational resource.
 
 <br>
 
