@@ -9,11 +9,12 @@
 ## 🎡 Features
 
 - Select an agent, hop into a game and it instalocks before you even know it!
+- Works separately from the game through the VALORANT API using [valclient](https://github.com/colinhartigan/valclient.py)
 - Allows you to stop the application from waiting for pre-game whenever
 - Allows you to switch between characters while instalocking
 - Stops instalocking and sending API requests as soon as an error is found
-- Clean and straightforward UI.
-- Fixed 3 second refresh limit to better prevent API abuse.
+- Clean and straightforward UI
+- Fixed 3 second refresh limit to better prevent API abuse
 - Agent banners, agent previews and other stuff i put in because memes
 
 <br>
@@ -28,17 +29,10 @@
 
 ## ❔ How to use
 
-- Start VALORANT
-- Select any agent from the left-hand-side list
-- Instalocking should begin automatically
-
-- If an error occurs try:
-    1) Selecting another agent and selecting the previous one again
-    2) Stopping and restarting the instalock
-    3) Reopening the application
-    4) Logging into VALORANT again
-
-    `Highly recommended you have chrome installed! The .exe will simply open in your default browser otherwise.`
+- Start VALORANT and this app.
+- Select any agent from the left-hand-side.
+- Instalocking should begin automatically, that's it!
+- Optionally, it's recommended to have [Google Chrome](https://www.google.com/intl/en_in/chrome/) installed. The .exe will simply open in your default browser otherwise, but it will still work.
 
 <br>
 
@@ -106,11 +100,19 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 ## 🤷‍♀️ Support / Feedback:
 
-You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively`
+- You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively`
+
+- If an error occurs when you're instalocking, try:
+    1) Selecting another agent and selecting the previous one again
+    2) Stopping and restarting the instalock
+    3) Reopening the application
+    4) Logging into VALORANT again
+
+- Sometimes the instalocker waits for a few seconds after the loading screen to instalock, this is because it scans for the pre-game screen every 3 seconds. You can change the loop delay in the code for yourself.
 
 #### Notes
 + I do not plan on developing this further, but I will maintain the code and update agents- this will continue to work.
-+ I am also not responsible for **misuse** of this product, I do not condone using this and this only exists as an educational resource.
++ I am also not responsible for **misuse** of this application, I do not condone using this and this only exists as an educational resource.
 
 <br>
 
