@@ -80,10 +80,33 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 <br>
 
+## Adding agents
+
+- Add the agent name and their UUID in `./main.py` and `./web/json/agents.json` respectively. Note that the agent hierarchy depends on `agents.json`.
+
+- Add an agent banner in `./web/assets/images/agent-banners`, The file name must be the agent's name in *lower case* and the file should be a *.png* <br>
+  The css that crops the banner is as follows. Crop the banner image and adjust it accordingly:
+  ```css
+  .agent-thumb {
+    max-width: 40vw;
+    height: 7vw;
+    object-fit: cover;
+    object-position: 0vw -6vw;
+    position: absolute;
+    z-index: -1;
+    aspect-ratio: 20 / 3;
+    transform: skewY(5deg);
+    transition: transform 0.2s;
+  }
+  ```
+
+- Add an agent preview in `./web/assets/images/agent-previews`. The file name must be the agent's name in *lower case* and the file should be a *.gif*
+
+<br>
+
 ## 🤷‍♀️ Support / Feedback:
 
-You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively` <br>
-The scrollbar isn't broken and doesn't make the application glitch. You just have skill issues.
+You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively`
 
 #### Notes
 + I do not plan on developing this further, but I will maintain the code and update agents- this will continue to work.

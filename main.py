@@ -23,7 +23,7 @@ INSTAGRAM = "https://www.instagram.com/kronsuki/"
 GITHUB = "https://github.com/SuppliedOrange/"
 
 # Customize this to your preference
-LOOP_DELAY = 3 # Do not set this to 0 unless you know what you're doing.
+LOOP_DELAY = 3 # Do not set this to less than 3 unless you know what you're doing.
 LOCK_DELAY = 0
 HOVER_DELAY = 0
 
@@ -57,7 +57,8 @@ AGENT_CODES = {
     "Harbor": "95b78ed7-4637-86d9-7e41-71ba8c293152",
     "Gekko": "e370fa57-4757-3604-3648-499e1f642d3f",
     "Deadlock": "cc8b64c8-4b25-4ff9-6e7f-37b4da43d235",
-    "Iso": "0e38b510-41a8-5780-5e8f-568b2a4f2d6c"
+    "Iso": "0e38b510-41a8-5780-5e8f-568b2a4f2d6c",
+    "Clove": "1dbf2edd-4729-0984-3115-daa5eed44993"
 }
 
 """
@@ -194,8 +195,18 @@ def open_github():
     webbrowser.open("https://github.com/SuppliedOrange/")
 
 def check_chrome_installed():
-    CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    return os.path.exists(CHROME_PATH)
+
+    def get_drives():
+        import win32api
+        drives = win32api.GetLogicalDriveStrings()
+        drives = drives.split('\000')[:-1]
+        return drives
+
+    for drive in get_drives():
+        CHROME_PATH = drive + r"Program Files\Google\Chrome\Application\chrome.exe"
+        if os.path.exists(CHROME_PATH): return True
+    
+    return False
 
 """
 INITIALIZING THE EEL APPLICATION

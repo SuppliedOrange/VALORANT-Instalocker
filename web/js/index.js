@@ -86,7 +86,6 @@ function initiateSkewScroll() {
         let newPos = section.scrollTop;
         let diff = newPos - currentPos;
         let speed = diff * 0.3;
-        console.log(speed)
         if (speed > 10) speed = 10;
         if (speed < -10) speed = -10;
         section.style.transform = `skewY(${ speed }deg)`;
