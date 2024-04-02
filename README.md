@@ -119,9 +119,9 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 ## 📰 Credits
 
 - Heavily inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker)
-- All agent banners after Gekko were made by [ExCharny](https://www.deviantart.com/excharny)
+- All agent banners with the black background art style were made by [ExCharny](https://www.deviantart.com/excharny)
 - Clove Banner by [slynxoxo](https://twitter.com/slynxoxo/) from [this post](https://twitter.com/slynxoxo/status/1771862541850861971)
 - Most Agent previews (sprays and official stickers) are from the official [VALORANT giphy page](https://giphy.com/playvalorant)
 - [munibug](https://www.twitch.tv/munibug) gif by [@walfieee](https://twitter.com/walfieee)
 - Application Icon and Favicon by [u/Odeuo](https://www.reddit.com/user/Odeuo/)
-- Some of the agent previews come from unknown sources, let me know if you find their sources!
+- Some of the agent previews and banners come from unknown sources, let me know if you find their sources!
