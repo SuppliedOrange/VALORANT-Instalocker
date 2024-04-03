@@ -100,7 +100,7 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 ## 🤷‍♀️ Support / Feedback:
 
-- You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord `@lternatively`
+- You can also make an issue on this repository and I'll check it out. Or you can hit me up on Discord [@lternatively](https://discord.com/users/735322421862727760)
 
 - If an error occurs when you're instalocking, try:
     1) Selecting another agent and selecting the previous one again
