@@ -69,16 +69,29 @@ def get_region():
     """
     Get the region code of the current game.
     """
-    with open(
-        os.path.join(os.getenv("LOCALAPPDATA"), R"VALORANT\Saved\Logs\ShooterGame.log"),
-        "rb",
-    ) as f:
-        lines = f.readlines()
-    for line in lines:
-        if b"regions" in line:
-            region = line.split(b"regions/")[1].split(b"]")[0]
-            return region.decode()
+    region = None
 
+    with open( os.path.join(os.getenv("LOCALAPPDATA"), R"VALORANT\Saved\Logs\ShooterGame.log"), "rb",) as f:
+        lines = f.readlines()
+
+    # Region finder Test 1
+    if not region:
+        for line in lines:
+            if b"regions/" in line:
+                region = line.split(b"regions/")[1].split(b"]")[0]
+                region = region.decode()
+                break
+                
+    # Region finder Test 2
+    if not region:
+        for line in lines:
+            if b"config/" in line:
+                region = line.split(b"config/")[1].split(b"]")[0]
+                region = region.decode()
+                break
+    
+    return region
+        
 
 def errorAlert(line1, line2, time):
     """
