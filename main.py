@@ -7,6 +7,8 @@ from valclient.client import Client
 import webbrowser
 import os
 import psutil
+from sys import argv
+import logging
 
 """
 CONSTANTS
@@ -61,6 +63,17 @@ AGENT_CODES = {
     "Clove": "1dbf2edd-4729-0984-3115-daa5eed44993"
 }
 
+# Enable or disable debugging through an arg.
+DEBUG = any( ['--debug' in arg.lower() for arg in argv] )
+logger = logging.getLogger("VALORANT_INSTALOCKER" + __name__)
+
+# Initialize debugger
+if DEBUG:
+    logger_filename = "valorant_instalocker.log"
+    logging.basicConfig( filename=logger_filename, encoding='utf-8', level=logging.DEBUG )
+    with open(logger_filename, "w"): pass # erase all content
+    logger.debug(f"""\nPreferences:\nloop delay: {LOOP_DELAY}\nlock delay: {LOCK_DELAY}\nhover delay: {HOVER_DELAY}""")
+
 """
 FUNCTIONS
 """
@@ -73,11 +86,14 @@ def get_region():
 
     with open( os.path.join(os.getenv("LOCALAPPDATA"), R"VALORANT\Saved\Logs\ShooterGame.log"), "rb",) as f:
         lines = f.readlines()
+    
+    logger.debug(f"Lines from ShooterGame.log: {len(lines)}")
 
     # Region finder Test 1
     if not region:
         for line in lines:
             if b"regions/" in line:
+                logger.debug(f"Testing {line}")
                 region = line.split(b"regions/")[1].split(b"]")[0]
                 region = region.decode()
                 break
@@ -86,9 +102,12 @@ def get_region():
     if not region:
         for line in lines:
             if b"config/" in line:
+                logger.debug(f"Testing {line}")
                 region = line.split(b"config/")[1].split(b"]")[0]
                 region = region.decode()
                 break
+    
+    logger.debug(f"Region: {region}")
     
     return region
         
@@ -98,6 +117,7 @@ def errorAlert(line1, line2, time):
     Change the status text and the chosen agent text into an error.
     Sleep for some time before changing it back
     """
+    logger.error(f"Error alert raised: {line1} {line2}")
     eel.alertUser(line1, line2)
     eel.sleep(time)
     eel.askUserToChooseAgent()
@@ -113,6 +133,7 @@ def stop_lock():
     RUNNING = False
     AGENT = None
     eel.hideStopButton()
+    logger.debug("Stopping agent locking")
 
 
 @eel.expose
@@ -123,75 +144,106 @@ def try_lock(agent):
     global RUNNING
     global AGENT
     global SEEN_MATCHES
+    
+    logger.debug("Attempting to begin locking.")
 
     # if valorant isnt on, mock the user
     if not "VALORANT.exe" in (p.name() for p in psutil.process_iter()):
+
         if RUNNING:
             stop_lock()
+
+            logger.debug("Valorant wasn't detected in process list so stopped locking.\nProcess list:")
+            logger.debug(str([p.name() for p in psutil.process_iter()]))
+
         return errorAlert("TURN VALORANT ON", "YOU CLOWN", 3)
 
     try:  # try and get the region code automatically
-        # print("Finding region...") # DEBUG
+        logger.debug('Trying to find region...')
         region_code = get_region()
-    except:
-        if RUNNING:
-            stop_lock()
-        return errorAlert("COULD NOT FIND REGION", "TRY LOGGING IN AGAIN", 5)
 
-    if (
-        RUNNING
-    ):  # if we're already attempting to select an agent, simply change what agent we're trying to select
-        # print(f'Agent changed to {agent} ') # DEBUG
+    except:
+
+        if RUNNING:
+            logger.debug("Region wasn't found so stopped locking")
+            stop_lock()
+
+        return errorAlert("COULD NOT FIND REGION", "TRY LOGGING IN AGAIN", 5)
+    
+    if ( RUNNING ): # if we're already attempting to select an agent, simply change what agent we're trying to select
+        logger.debug(f"Agent changed to {agent}")
         AGENT = AGENT_CODES[agent]
         return
 
-    # print(f"Starting to lock {agent}") # DEBUG
+    logger.debug(f"Starting to lock {agent}")
 
     try:
-        client = Client(region=region_code)  # Activate 1 instance
+        logger.debug("Initializing a valclient instance...")
+        client = Client(region=region_code)
     except ValueError:
         return errorAlert("COULD NOT INITIALIZE", "A VALCLIENT", 5)
+    except Exception as e:
+        logger.error(e)
+        raise Exception(e)
 
     client.activate()
-    # print("Activated 1 instance") # DEBUG
+    logger.debug("Activated a valclient instance")
 
     RUNNING = True  # Mark as actively trying to lock an agent
 
     while RUNNING:
         eel.sleep(LOOP_DELAY)
+        logger.debug(f"Loop delay waiting {LOOP_DELAY} seconds")
 
         if not RUNNING:
+            logger.debug("No longer running, ending locking loop")
             return  # Probably terminated
 
-        # print("Rechecking...") # DEBUG
+        logger.debug("Rechecking for pre-game...")
 
         try:
             sessionState = client.fetch_presence(client.puuid)["sessionLoopState"]
             matchID = client.pregame_fetch_match()["ID"]
 
+            logger.debug(f"Session State: {sessionState}\nMatch ID: {matchID}")
+
             if sessionState == "PREGAME" and matchID not in SEEN_MATCHES:
+
+                logger.debug("Pregame found. Adding match ID to seen matches and proceeding to lock.")
+
                 SEEN_MATCHES.append(
                     matchID
                 )  # If we've seen this match before, leave it be.
 
+                logger.debug(f"Seen matches: {SEEN_MATCHES}")
+
                 eel.changeStatus("LOCKING")
 
                 if not AGENT:
+                    logger.debug(f"Setting agent code to {agent}")
                     AGENT = AGENT_CODES[agent]
 
                 eel.sleep(HOVER_DELAY)
+                logger.debug(f"Hover delay waiting {HOVER_DELAY} seconds")
+
                 client.pregame_select_character(AGENT)
+                logger.debug("Selecting agent.")
 
                 eel.sleep(LOCK_DELAY)
+                logger.debug(f"Lock delay waiting {LOCK_DELAY} seconds")
+
                 client.pregame_lock_character(AGENT)
+                logger.debug("Locking agent.")
 
                 stop_lock()
+                logger.debug("Stopped locking loop since we're done.")
 
                 eel.changeStatus("LOCKED")
 
                 return True
 
         except Exception as e:
+            logger.error(str(e))
             if "pre-game" not in str(e):
                 errorAlert("ERROR", e, 12)
                 stop_lock()
@@ -200,25 +252,37 @@ def try_lock(agent):
 
 @eel.expose
 def open_instagram():
-    webbrowser.open("https://www.instagram.com/kronsuki/")
+    webbrowser.open(INSTAGRAM)
 
 
 @eel.expose
 def open_github():
-    webbrowser.open("https://github.com/SuppliedOrange/")
+    webbrowser.open(GITHUB)
 
 def check_chrome_installed():
 
+    logger.debug("Checking for chrome..")
+
     def get_drives():
-        import win32api
+        
+        logger.debug("Getting all drives")
+        import win32api # type: ignore because pywin32 fulfils this.
+        
         drives = win32api.GetLogicalDriveStrings()
+        logger.debug(f"Drives: {drives}")
+
         drives = drives.split('\000')[:-1]
+        logger.debug(f"Formatted drives: {drives}")
+
         return drives
 
     for drive in get_drives():
         CHROME_PATH = drive + r"Program Files\Google\Chrome\Application\chrome.exe"
-        if os.path.exists(CHROME_PATH): return True
+        if os.path.exists(CHROME_PATH): 
+            logger.debug(f"Found chrome at {CHROME_PATH}")
+            return True
     
+    logger.debug("Could not find chrome. Launching with default browser.")
     return False
 
 """
@@ -229,8 +293,8 @@ eel.init("web")
 # Try launching with chrome, otherwise launch it in their default browser
 
 if check_chrome_installed():
-    # print("Starting eel with chrome") # DEBUG
+    logger.debug("Starting eel with chrome")
     eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="chrome")
 else:
-    # print("Starting with default browser") # DEBUG
+    logger.debug("Starting eel with default browser")
     eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="default")
