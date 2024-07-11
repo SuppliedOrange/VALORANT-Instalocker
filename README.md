@@ -117,7 +117,7 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 ## 📰 Credits
 
-- Heavily inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker)
+- Heavily inspired by [valorant-agent-yoinker](https://github.com/deadly/valorant-agent-yoinker) that uses [valclient](https://github.com/colinhartigan/valclient.py)
 - All agent banners with the black background art style were made by [ExCharny](https://www.deviantart.com/excharny)
 - Clove Banner by [slynxoxo](https://twitter.com/slynxoxo/) from [this post](https://twitter.com/slynxoxo/status/1771862541850861971)
 - Most Agent previews (sprays and official stickers) are from the official [VALORANT giphy page](https://giphy.com/playvalorant)
