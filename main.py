@@ -180,14 +180,16 @@ def try_lock(agent):
     try:
         logger.debug("Initializing a valclient instance...")
         client = Client(region=region_code)
+        logger.debug("Initialized a valclient instance.")
     except ValueError:
         return errorAlert("COULD NOT INITIALIZE", "A VALCLIENT", 5)
     except Exception as e:
         logger.error(e)
         raise Exception(e)
 
+    logger.debug("Activating valclient instance...")
     client.activate()
-    logger.debug("Activated a valclient instance")
+    logger.debug("Activated valclient instance")
 
     RUNNING = True  # Mark as actively trying to lock an agent
 
