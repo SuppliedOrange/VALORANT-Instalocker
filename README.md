@@ -112,6 +112,7 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 #### Notes
 + I do not plan on developing this further, but I will maintain the code and update agents- this will continue to work.
 + I am also not responsible for **misuse** of this application, I do not condone using this and this only exists as an educational resource.
++ I plan to release a new version re-written in typescript as an electron app. I am sick of Eel, and I don't like the fact you can't choose individual agents for each map.
 
 <br>
 
