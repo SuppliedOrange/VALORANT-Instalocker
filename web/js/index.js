@@ -4,6 +4,8 @@ addEventListener('load', () => {
 
     initiateSkewScroll();
 
+    initializeSearch();
+
     // EEL EXPOSING
     eel.expose( alertUser );
     eel.expose( askUserToChooseAgent );
@@ -105,6 +107,28 @@ function pickAgent( agent ) {
     document.getElementById('agent-preview').src = `./assets/images/agent-previews/${ agent.toLowerCase()}-preview.gif`;
     showStopButton();
     eel.try_lock(agent);
+
+}
+
+function initializeSearch() {
+
+    const searchInput = document.getElementById('agent-search');
+    
+    searchInput.addEventListener('input', (e) => {
+
+        const searchTerm = e.target.value.toLowerCase();
+        const agents = document.querySelectorAll('.agent');
+        
+        agents.forEach(agent => {
+            const agentName = agent.querySelector('p').innerText.toLowerCase();
+            if (agentName.includes(searchTerm)) {
+                agent.classList.remove('hidden');
+            } else {
+                agent.classList.add('hidden');
+            }
+        });
+
+    });
 
 }
 

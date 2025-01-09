@@ -138,3 +138,45 @@ body {
     left: 0;
     width: 100%;
 }
+
+.search-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1vw;
+    background: rgb(15, 14, 17);
+}
+
+.agent-search {
+    width: 100%;
+    padding: 0.8vw 1.5vw;
+    font-family: Cantarell;
+    font-size: 1.2vw;
+    color: #ff9aff;
+    background: 
+        radial-gradient(50% 2px at 50% 100%, #ff9aff22, transparent 70%),
+        radial-gradient(50% 2px at 50% 0%, #ff9aff22, transparent 70%);
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.agent-search:focus {
+    background: 
+        radial-gradient(50% 3px at 50% 100%, #ff9aff44, transparent 80%),
+        radial-gradient(50% 3px at 50% 0%, #ff9aff44, transparent 80%);
+}
+
+.agent-search::placeholder {
+    color: rgba(255, 154, 255, 0.6);
+}
+
+.agent.hidden {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
