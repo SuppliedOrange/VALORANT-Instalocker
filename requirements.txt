@@ -1,7 +1,8 @@
-eel>=0.16.0
+eel>=0.18.1
 psutil>=5.9.5
 pyinstaller
 requests
 screeninfo>=0.8.1
 valclient
 pywin32
+requests

@@ -298,7 +298,7 @@ eel.init("web")
 
 if check_chrome_installed():
     logger.debug("Starting eel with chrome")
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="chrome")
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), mode="chrome")
 else:
     logger.debug("Starting eel with default browser")
-    eel.start("index.html", size=(SCREEN_DIMENSIONS), port=0, mode="default")
+    eel.start("index.html", size=(SCREEN_DIMENSIONS), mode="default")
