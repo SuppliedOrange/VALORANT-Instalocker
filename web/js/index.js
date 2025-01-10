@@ -113,20 +113,62 @@ function pickAgent( agent ) {
 function initializeSearch() {
 
     const searchInput = document.getElementById('agent-search');
-    
+
+    function levenshteinDistance (s, t) {
+
+        if (!s.length) return t.length;
+        if (!t.length) return s.length;
+ 
+        return Math.min(
+                levenshteinDistance(s.substr(1), t) + 1,
+                levenshteinDistance(t.substr(1), s) + 1,
+                levenshteinDistance(s.substr(1), t.substr(1)) + (s.charAt(0).toLowerCase() !== t.charAt(0).toLowerCase() ? 1 : 0)
+        );
+
+    }
+
     searchInput.addEventListener('input', (e) => {
 
-        const searchTerm = e.target.value.toLowerCase();
+        const searchTerm = e.target.value.toLowerCase().trim();
         const agents = document.querySelectorAll('.agent');
+
+        let showAgents = [];
+        let hideAgents = [];
         
         agents.forEach(agent => {
+
             const agentName = agent.querySelector('p').innerText.toLowerCase();
+
             if (agentName.includes(searchTerm)) {
-                agent.classList.remove('hidden');
-            } else {
-                agent.classList.add('hidden');
+                showAgents.push({agent: agent, agentName: agentName});
             }
+
+            else {
+                hideAgents.push({agent: agent, agentName: agentName});
+            }
+
         });
+
+        if (showAgents.length == 0) {
+
+            for (const agentStatus of hideAgents) {
+
+                if ( levenshteinDistance(searchTerm, agentStatus.agentName) < 3 ) {
+                    showAgents.push(agentStatus);
+                    hideAgents = hideAgents.filter(agent => agent !== agentStatus);
+                }
+    
+            }
+
+        }
+
+
+        for (const agentStatus of showAgents) {
+            agentStatus.agent.classList.remove('hidden');
+        };
+        for (const agentStatus of hideAgents) {
+            agentStatus.agent.classList.add('hidden');
+        }
 
     });
 
