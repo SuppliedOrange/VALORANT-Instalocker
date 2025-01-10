@@ -7,7 +7,7 @@ A VALORANT Instalocker with a clean GUI
 <br>
 
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/SuppliedOrange/VALORANT-Instalocker/total?style=flat-square&label=Total%20Downloads&color=brown)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/SuppliedOrange/VALORANT-Instalocker/latest/total?style=flat-square&label=People%20actively%20using%20the%20latest%20release&color=brown)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/SuppliedOrange/VALORANT-Instalocker/latest/total?style=flat-square&label=People%20using%20the%20latest%20release&color=brown)
 
 ## 🎡 Features
 
