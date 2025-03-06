@@ -62,7 +62,8 @@ AGENT_CODES = {
     "Harbor": "95b78ed7-4637-86d9-7e41-71ba8c293152",
     "Deadlock": "cc8b64c8-4b25-4ff9-6e7f-37b4da43d235",
     "Iso": "0e38b510-41a8-5780-5e8f-568b2a4f2d6c",
-    "Vyse": "efba5359-4016-a1e5-7626-b1ae76895940"
+    "Vyse": "efba5359-4016-a1e5-7626-b1ae76895940",
+    "Waylay": "df1cb487-4902-002e-5c17-d28e83e78588"
 }
 
 # Enable or disable debugging through an arg.
