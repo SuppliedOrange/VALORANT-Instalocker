@@ -9,6 +9,7 @@ import os
 import psutil
 from sys import argv
 import logging
+import time
 
 """
 CONSTANTS
@@ -148,15 +149,20 @@ def try_lock(agent):
     global AGENT
     global SEEN_MATCHES
     
-    logger.debug("Attempting to begin locking.")
+    logger.debug(f"User requested to lock agent: {agent}. Attempting to lock...")
 
     # if valorant isnt on, mock the user
     if not "VALORANT.exe" in (p.name() for p in psutil.process_iter()):
 
         if RUNNING:
+
             stop_lock()
 
             logger.debug("Valorant wasn't detected in process list so stopped locking.\nProcess list:")
+            logger.debug(str([p.name() for p in psutil.process_iter()]))
+        
+        else:
+            logger.debug("Valorant wasn't detected in process list when attempted to lock\nProcess list:")
             logger.debug(str([p.name() for p in psutil.process_iter()]))
 
         return errorAlert("TURN VALORANT ON", "YOU CLOWN", 3)
@@ -181,11 +187,14 @@ def try_lock(agent):
     logger.debug(f"Starting to lock {agent}")
 
     try:
+
         logger.debug("Initializing a valclient instance...")
         client = Client(region=region_code)
         logger.debug("Initialized a valclient instance.")
+
     except ValueError:
         return errorAlert("COULD NOT INITIALIZE", "A VALCLIENT", 5)
+    
     except Exception as e:
         logger.error(e)
         raise Exception(e)
@@ -228,17 +237,21 @@ def try_lock(agent):
                     logger.debug(f"Setting agent code to {agent}")
                     AGENT = AGENT_CODES[agent]
 
+                start_time = time.time()
+
                 eel.sleep(HOVER_DELAY)
                 logger.debug(f"Hover delay waiting {HOVER_DELAY} seconds")
 
                 client.pregame_select_character(AGENT)
-                logger.debug("Selecting agent.")
+                logger.debug(f"Selected agent: {agent} with code {AGENT}")
 
                 eel.sleep(LOCK_DELAY)
                 logger.debug(f"Lock delay waiting {LOCK_DELAY} seconds")
 
                 client.pregame_lock_character(AGENT)
-                logger.debug("Locking agent.")
+                logger.debug(f"Locked agent: {agent} with code {AGENT}")
+
+                logger.debug(f"Agent selection process took {time.time() - start_time:.2f} seconds")
 
                 stop_lock()
                 logger.debug("Stopped locking loop since we're done.")
@@ -248,7 +261,10 @@ def try_lock(agent):
                 return True
 
         except Exception as e:
-            logger.error(str(e))
+
+            logger.error(f"Exception occurred during agent locking: {str(e)}")
+            logger.exception("Stack trace:")
+
             if "pre-game" not in str(e):
                 errorAlert("ERROR", e, 12)
                 stop_lock()
@@ -300,6 +316,7 @@ eel.init("web")
 if check_chrome_installed():
     logger.debug("Starting eel with chrome")
     eel.start("index.html", size=(SCREEN_DIMENSIONS), mode="chrome")
+    
 else:
     logger.debug("Starting eel with default browser")
     eel.start("index.html", size=(SCREEN_DIMENSIONS), mode="default")
