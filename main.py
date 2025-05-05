@@ -67,6 +67,12 @@ AGENT_CODES = {
     "Waylay": "df1cb487-4902-002e-5c17-d28e83e78588"
 }
 
+VALORANT_PROCESS_NAMES = [
+    "VALORANT.exe",
+    "VALORANT-Win64-Shipping.exe",
+    "VALORANT-Win32-Shipping.exe"
+]
+
 # Enable or disable debugging through an arg.
 DEBUG = any( ['--debug' in arg.lower() for arg in argv] )
 logger = logging.getLogger("VALORANT_INSTALOCKER" + __name__)
@@ -152,18 +158,19 @@ def try_lock(agent):
     logger.debug(f"User requested to lock agent: {agent}. Attempting to lock...")
 
     # if valorant isnt on, mock the user
-    if not "VALORANT.exe" in (p.name() for p in psutil.process_iter()):
+    running_process_names = [p.name() for p in psutil.process_iter()]
+    if not any(valorant_process in running_process_names for valorant_process in VALORANT_PROCESS_NAMES):
 
         if RUNNING:
 
             stop_lock()
 
             logger.debug("Valorant wasn't detected in process list so stopped locking.\nProcess list:")
-            logger.debug(str([p.name() for p in psutil.process_iter()]))
+            logger.debug(str(running_process_names))
         
         else:
             logger.debug("Valorant wasn't detected in process list when attempted to lock\nProcess list:")
-            logger.debug(str([p.name() for p in psutil.process_iter()]))
+            logger.debug(str(running_process_names))
 
         return errorAlert("TURN VALORANT ON", "YOU CLOWN", 3)
 
