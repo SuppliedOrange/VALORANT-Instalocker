@@ -108,13 +108,14 @@ body {
 }
 
 #socials {
-
     margin-bottom: 5.4rem;
+}
 
-    @media (min-width: 1980px) {
+@media (min-width: 1980px) {
+    #socials {
         margin-bottom: 8rem;
     }
-
+}
 }
 
 #agents::-webkit-scrollbar-track
