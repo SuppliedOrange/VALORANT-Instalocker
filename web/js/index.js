@@ -50,6 +50,12 @@ function fillAgentList() {
 
 function alertUser(statusText = '', chosenAgentText = '') {
 
+    gtag('event', 'app_state_change', {
+        'state_name': 'alert',
+        'status_text': statusText,
+        'agent_name': chosenAgentText
+    });
+
     let status = document.getElementById('status');
     let chosenAgent = document.getElementById('chosen-agent');
     let agent_preview = document.getElementById('agent-preview');
@@ -62,6 +68,11 @@ function alertUser(statusText = '', chosenAgentText = '') {
 
 function askUserToChooseAgent() {
 
+    gtag('event', 'app_state_change', {
+        'state_name': 'choose_agent',
+        'status_text': 'CHOOSE AN AGENT'
+    });
+
     let status = document.getElementById('status');
     let chosenAgent = document.getElementById('chosen-agent');
     let agent_preview = document.getElementById('agent-preview');
@@ -73,6 +84,19 @@ function askUserToChooseAgent() {
 }
 
 function changeStatus(status) {
+
+    gtag('event', 'app_state_change', {
+        'state_name': 'status_update',
+        'status_text': status
+    });
+
+    if (status == 'LOCKED') {
+
+        gtag('event', 'agent_locked', {
+            'agent_name': document.getElementById('chosen-agent').innerText
+        });
+
+    }
 
     document.getElementById('status').innerText = status;
 
@@ -106,6 +130,11 @@ function pickAgent( agent ) {
     document.getElementById('chosen-agent').innerText = agent.toUpperCase();
     document.getElementById('agent-preview').src = `./assets/images/agent-previews/${ agent.toLowerCase()}-preview.gif`;
     showStopButton();
+    
+    gtag('event', 'agent_selected', {
+        'agent_name': agent
+    });
+    
     eel.try_lock(agent);
 
 }
@@ -196,12 +225,20 @@ function stopLocking() {
 }
 
 function openInstagram() {
+    
+    gtag('event', 'social_clicked', {
+        'platform': 'instagram'
+    });
 
     eel.open_instagram();
 
 }
 
 function openGithub() {
+
+    gtag('event', 'social_clicked', {
+        'platform': 'github'
+    });
 
     eel.open_github();
 

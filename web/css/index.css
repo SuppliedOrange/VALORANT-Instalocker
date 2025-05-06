@@ -81,6 +81,41 @@ body {
     font-family: Cantarell;
     background-color: transparent;
     border: 0px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease; 
+}
+
+.icon:hover {
+    opacity: 1;
+}
+
+.icon img {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.icon:hover img {
+    opacity: 1;
+}
+
+.icon p {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.icon:hover p {
+    opacity: 1; /* Return to full opacity on hover */
+}
+
+#socials {
+    margin-bottom: 5.4rem;
+}
+
+@media (min-width: 1980px) {
+    #socials {
+        margin-bottom: 8rem;
+    }
+}
 }
 
 #agents::-webkit-scrollbar-track

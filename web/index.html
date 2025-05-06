@@ -12,6 +12,46 @@
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="/eel.js"></script>
+
+        <script>
+
+            // Set to true to enable analytics.
+            window.useAnalytics = false;
+
+            // You may change this if you're using your own tag.
+            window.analyticsTag = "G-PKCXXGC72G";
+
+        </script>
+        
+        <!-- Google tag (gtag.js) -->
+        <script>
+
+            if (window.useAnalytics && window.analyticsTag) {
+
+                const script = document.createElement('script');
+
+                script.async = true;
+                script.src = `https://www.googletagmanager.com/gtag/js?id=${window.analyticsTag}`;
+
+                document.head.appendChild(script);
+
+            }
+
+        </script>
+
+        <script>
+
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag () {
+                if (window.useAnalytics) dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', analyticsTag);
+            
+        </script>
         
     </head>
 
@@ -52,7 +92,7 @@
 
                         <div class="d-flex flex-row">
 
-                            <img id='agent-preview' class="agent_preview mx-auto" src='./assets/images/slurp.gif'>
+                            <img id="agent-preview" class="agent_preview mx-auto" src="./assets/images/slurp.gif">
 
                         </div>
                         
@@ -83,8 +123,8 @@
 
                         <button id="instagram" class="icon" onclick="openInstagram()">
 
-                            <img src="./assets/images/socials/instagram.svg"></img>
-                            <p class="text-light" style="display: inline;"> kronsuki </p> </img>
+                            <img src="./assets/images/socials/instagram.svg">
+                            <p class="text-light mt-3" style="display: inline;"> kronsuki </p>
 
                         </button>
 
@@ -92,8 +132,8 @@
 
                         <button id="github" class="icon" onclick="openGithub()">
 
-                            <img src="./assets/images/socials/github.svg"></img>
-                            <p class="text-light" style="display: inline;"> suppliedorange </p> </img>
+                            <img src="./assets/images/socials/github.svg">
+                            <p class="text-light" style="display: inline;"> suppliedorange </p>
 
                         </button>
 
