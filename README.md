@@ -67,7 +67,7 @@ Even if Riot happens to somehow detect this, you will only recieve a 7 day ban f
 
 - Building a distributable:
     <br>
-    - Run the `replace_bottle.py` code in install_and_build. This step counters an issue with pyinstaller. You can also do this manually by going to your python's directory / Libs / site-packages and then replacing bottle.py with the latest variant. [(See this issue)](https://github.com/SuppliedOrange/VALORANT-Instalocker/issues/3)
+    - ~~Run the `replace_bottle.py` code in install_and_build. This step counters an issue with pyinstaller. You can also do this manually by going to your python's directory / Libs / site-packages and then replacing bottle.py with the latest variant. [(See this issue)](https://github.com/SuppliedOrange/VALORANT-Instalocker/issues/3)~~ Likely unnecessary.
     - Run `python -m eel main.py web --onefile --noconsole --icon=./web/favicon.ico --name="VALORANT Instalocker"`
     - A distributable should appear in ./dist
 

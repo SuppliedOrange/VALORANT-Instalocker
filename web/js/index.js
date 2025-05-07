@@ -50,11 +50,7 @@ function fillAgentList() {
 
 function alertUser(statusText = '', chosenAgentText = '') {
 
-    gtag('event', 'app_state_change', {
-        'state_name': 'alert',
-        'status_text': statusText,
-        'agent_name': chosenAgentText
-    });
+    gtag('event', `app_state_change_${statusText.split(' ').join('-')}_${chosenAgentText.split(' ').join('-')}`, {});
 
     let status = document.getElementById('status');
     let chosenAgent = document.getElementById('chosen-agent');
@@ -68,11 +64,6 @@ function alertUser(statusText = '', chosenAgentText = '') {
 
 function askUserToChooseAgent() {
 
-    gtag('event', 'app_state_change', {
-        'state_name': 'choose_agent',
-        'status_text': 'CHOOSE AN AGENT'
-    });
-
     let status = document.getElementById('status');
     let chosenAgent = document.getElementById('chosen-agent');
     let agent_preview = document.getElementById('agent-preview');
@@ -85,16 +76,11 @@ function askUserToChooseAgent() {
 
 function changeStatus(status) {
 
-    gtag('event', 'app_state_change', {
-        'state_name': 'status_update',
-        'status_text': status
-    });
+    gtag('event', `status_update_${status.split(' ').join('-')}`, {});
 
     if (status == 'LOCKED') {
 
-        gtag('event', 'agent_locked', {
-            'agent_name': document.getElementById('chosen-agent').innerText
-        });
+        gtag('event', `agent_locked_${document.getElementById('chosen-agent').innerText.split(' ').join('-')}`, {});
 
     }
 
@@ -131,9 +117,7 @@ function pickAgent( agent ) {
     document.getElementById('agent-preview').src = `./assets/images/agent-previews/${ agent.toLowerCase()}-preview.gif`;
     showStopButton();
     
-    gtag('event', 'agent_selected', {
-        'agent_name': agent
-    });
+    gtag('event', `agent_selected_${agent.split(' ').join('-')}`, {});
     
     eel.try_lock(agent);
 
@@ -226,9 +210,7 @@ function stopLocking() {
 
 function openInstagram() {
     
-    gtag('event', 'social_clicked', {
-        'platform': 'instagram'
-    });
+    gtag('event', 'social_clicked_instagram', {});
 
     eel.open_instagram();
 
@@ -236,9 +218,7 @@ function openInstagram() {
 
 function openGithub() {
 
-    gtag('event', 'social_clicked', {
-        'platform': 'github'
-    });
+    gtag('event', 'social_clicked_github', {});
 
     eel.open_github();
 
