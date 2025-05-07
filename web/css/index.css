@@ -26,7 +26,7 @@ body {
 	flex-direction: column !important;
     flex: 100vh !important;
     overflow-y: scroll;
-    overflow-x: hidden
+    overflow-x: hidden;
 
 }
 
