@@ -207,7 +207,14 @@ def try_lock(agent):
         raise Exception(e)
 
     logger.debug("Activating valclient instance...")
-    client.activate()
+
+    try:
+        client.activate()
+
+    except Exception as e:
+        logger.error(f"Exception occurred during valclient activation: {str(e)}")
+        raise Exception(e)
+
     logger.debug("Activated valclient instance")
 
     RUNNING = True  # Mark as actively trying to lock an agent
@@ -224,6 +231,7 @@ def try_lock(agent):
 
         try:
             sessionState = client.fetch_presence(client.puuid)["sessionLoopState"]
+            
             matchID = client.pregame_fetch_match()["ID"]
 
             logger.debug(f"Session State: {sessionState}\nMatch ID: {matchID}")
