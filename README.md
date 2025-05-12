@@ -49,10 +49,8 @@ Is that safe? Yes, it is. Windows protects your PC because this is an unsigned e
 <br>
 
 ## ❓ Can I get banned?
+Instalocking is a bannable offense. You likely won't get banned unless you go around telling everyone you have an instalocker. I wouldn't recommend keeping it running for long periods of time because it sends API requests instead of listening to the websocket. This is a very small project for educational purposes so I won't provide features like failsafes, that is up to you. Even if Riot detects this (through .exe blacklisting or pregame request measurement), you will likely only recieve a 7 day ban for API abuse. That's still unlikely to occur and hasn't happened yet.
 
-Not likely unless you go around telling everyone you have an instalocker.
-<br>
-Even if Riot happens to somehow detect this, you will only recieve a 7 day ban for API abuse. That's still unlikely to occur and hasn't happened yet.
 > [@deadly](https://github.com/deadly): With all programs like this, there is no guarantee that it's safe because using the VALORANT API in this manner is against Riot's Terms of Service. However, this program does not use an autoclicker to select the agent, read the game's memory, or change the game's files; therefore, the anticheat shouldn't be triggered. No suspensions have been reported so far from using this method of exploit.
 
 <br>
