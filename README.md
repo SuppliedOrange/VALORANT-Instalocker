@@ -1,4 +1,6 @@
-
+# ⚠ Unmaintained, won't work.
+You may choose to lose the outdated valclient library and use something else to make it work for yourself. If you're a developer yourself and you're interested in this, please check out https://github.com/SuppliedOrange/VALORANT-Instalocker/issues/29
+-------------------------------
 ![image](https://github.com/SuppliedOrange/VALORANT-Instalocker/assets/70258998/000c238b-c72e-4682-abc6-90fca7d2cbda)
 
 # VALORANT Instalocker
