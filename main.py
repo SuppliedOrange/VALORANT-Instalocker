@@ -232,8 +232,30 @@ def try_lock(agent):
         logger.debug("Rechecking for pre-game...")
 
         try:
-            sessionState = client.fetch_presence(client.puuid)["sessionLoopState"]
+
+            presence = client.fetch_presence(client.puuid)
+
+            logger.debug(f"Fetched presence: {presence}")
+
+            if not presence:
+                logger.debug("No presence data found, skipping iteration.")
+                errorAlert("NO PRESENCE DATA", "CRITICAL ERROR", 5)
+                continue
+
+            matchPresenceData = presence['matchPresenceData']
+
+            if not matchPresenceData:
+                logger.debug("No match presence data found, skipping iteration.")
+                errorAlert("NO MATCH PRESENCE DATA", "", 5)
+                continue
+
+            sessionState = matchPresenceData['sessionLoopState']
             
+            if not sessionState:
+                logger.debug("No session loop state found, skipping iteration.")
+                errorAlert("NO SESSION STATE", "", 5)
+                continue
+
             matchID = client.pregame_fetch_match()["ID"]
 
             logger.debug(f"Session State: {sessionState}\nMatch ID: {matchID}")
@@ -278,6 +300,11 @@ def try_lock(agent):
                 return True
 
         except Exception as e:
+
+            if "You are not in a pre-game" in str(e):
+
+                logger.debug("Not in pre-game, skipping iteration. Full error: " + str(e))
+                continue
 
             logger.error(f"Exception occurred during agent locking: {str(e)}")
             logger.exception("Stack trace:")
