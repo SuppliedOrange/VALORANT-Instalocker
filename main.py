@@ -232,7 +232,12 @@ def try_lock(agent):
         logger.debug("Rechecking for pre-game...")
 
         try:
-            sessionState = client.fetch_presence(client.puuid)["sessionLoopState"]
+
+            presence = client.fetch_presence(client.puuid)
+
+            logger.debug(f"Fetched presence: {presence}")
+
+            sessionState = presence['matchPresenceData']['sessionLoopState']
             
             matchID = client.pregame_fetch_match()["ID"]
 
