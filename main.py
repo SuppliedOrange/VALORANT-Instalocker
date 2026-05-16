@@ -21,6 +21,7 @@ SCREEN_DIMENSIONS = (
     list(get_monitors())[0].height // 1.7,
 )
 
+# Socials, don't touch! >:(
 INSTAGRAM = "https://www.instagram.com/kronsuki/"
 GITHUB = "https://github.com/SuppliedOrange/"
 
@@ -231,11 +232,13 @@ def try_lock(agent):
         logger.debug("Rechecking for pre-game...")
 
         try:
+            sessionState = client.fetch_presence(client.puuid)["sessionLoopState"]
+            
             matchID = client.pregame_fetch_match()["ID"]
 
-            logger.debug(f"Match ID: {matchID}")
+            logger.debug(f"Session State: {sessionState}\nMatch ID: {matchID}")
 
-            if matchID not in SEEN_MATCHES:
+            if sessionState == "PREGAME" and matchID not in SEEN_MATCHES:
 
                 logger.debug("Pregame found. Adding match ID to seen matches and proceeding to lock.")
 
@@ -276,14 +279,13 @@ def try_lock(agent):
 
         except Exception as e:
 
+            logger.error(f"Exception occurred during agent locking: {str(e)}")
+            logger.exception("Stack trace:")
+
             if "pre-game" not in str(e):
-                logger.error(f"Exception occurred during agent locking: {str(e)}")
-                logger.exception("Stack trace:")
-                errorAlert("ERROR", str(e), 12)
+                errorAlert("ERROR", e, 12)
                 stop_lock()
                 return
-
-            logger.debug(f"Not in pre-game yet: {str(e)}")
 
 
 @eel.expose
