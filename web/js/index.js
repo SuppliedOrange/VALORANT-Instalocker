@@ -209,7 +209,7 @@ function stopLocking() {
 }
 
 function openInstagram() {
-    
+
     gtag('event', 'social_clicked_instagram', {});
 
     eel.open_instagram();

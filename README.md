@@ -1,4 +1,4 @@
-# ⚠ Unmaintained, won't work.
+# ⚠ Unmaintained
 You may choose to lose the outdated valclient library and use something else to make it work for yourself. If you're a developer yourself and you're interested in this, please check out https://github.com/SuppliedOrange/VALORANT-Instalocker/issues/29
 -------------------------------
 ![image](https://github.com/SuppliedOrange/VALORANT-Instalocker/assets/70258998/000c238b-c72e-4682-abc6-90fca7d2cbda)
@@ -105,17 +105,13 @@ Instalocking is a bannable offense. You likely won't get banned unless you go ar
 
 - You can hit me up on Discord [@lternatively](https://discord.com/users/735322421862727760)
 
-- If your issue is "cannot initialize a valclient", follow this method to report it https://github.com/SuppliedOrange/VALORANT-Instalocker/issues/12
-
-- For other issues, use the `--debug` parameter to log everything that happens when you try to instalock then make an issue:
+- For most issues, use the `--debug` parameter to log everything that happens when you try to instalock then make an issue on github:
   [Method 1](https://i.imgur.com/InEbwdz.mp4) [Method 2](https://i.imgur.com/R5ElrrP.png) <br>
   
 - Sometimes the instalocker waits for a few seconds after the loading screen to instalock, this is because it scans for the pre-game screen every 3 seconds. You can change the loop delay in the code for yourself.
 
 #### Notes
-+ I do not plan on developing this further, but I will maintain the code and update agents- this will continue to work.
-+ I am also not responsible for **misuse** of this application, I do not condone using this and this only exists as an educational resource.
-+ I plan to release a new version re-written in typescript as an electron app. I am sick of Eel, and I don't like the fact you can't choose individual agents for each map.
++ I am not responsible for **misuse** of this application, I do not condone using this and this only exists as an educational resource.
 
 <br>
 
