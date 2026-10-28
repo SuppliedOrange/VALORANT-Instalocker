@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vRY Match Loadouts</title>
+    <link rel="icon" type="image/png" href="assets/Logo.png">
+    <link rel="stylesheet" href="matchLoadouts.css">
+    <script src="matchLoadouts.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <section class="players-column" aria-label="Players">
+            <div class="roster-heading">
+                <h2>Players</h2><button id="openSettingsButton" class="settings-button" type="button">Settings</button>
+            </div>
+            <div class="teams-layout">
+                <div class="team-section">
+                    <div id="blueGrid" class="players-grid"></div>
+                </div>
+                <div class="team-divider"></div>
+                <div class="team-section">
+                    <div id="redGrid" class="players-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="settingsPanel" class="settings-panel" hidden><div class="settings-window"><div class="settings-header"><h2>Display Settings</h2><button id="closeSettingsButton" class="close-fab" type="button">X</button></div><div class="settings-content"><section class="settings-section"><h3>Teams</h3><label class="setting-row">Show enemy loadouts <input id="showEnemiesSetting" type="checkbox"></label><label class="setting-row">Team layout <select id="teamLayoutSetting"><option value="separate">Separate</option><option value="unified">Unified</option></select></label></section><section class="settings-section"><h3>Player cards</h3><label class="setting-row">Show weapon previews <input id="showPreviewsSetting" type="checkbox"></label><label class="setting-row">Show team label <input id="showTeamSetting" type="checkbox"></label></section><section class="settings-section"><h3>Preview weapons</h3><div id="previewWeaponsSetting" class="weapon-settings-grid"></div></section><section class="settings-section"><h3>Loadout details</h3><label class="setting-row">Show expressions <input id="showExpressionsSetting" type="checkbox"></label><label class="setting-row">Show player card <input id="showPlayerCardSetting" type="checkbox"></label><label class="setting-row">Show weapon buddies <input id="showBuddiesSetting" type="checkbox"></label></section></div><div class="settings-footer"><button id="resetSettingsButton" class="secondary-button" type="button">Reset defaults</button><span>Changes save automatically.</span></div></div></section>
+<main class="loadout-layout">
+            <section id="detailsPanel" class="details-column" aria-label="Selected player loadout" hidden>
+                <div class="details-window">
+                    <div class="detail-controls">
+                        <div class="agent-pill">
+                            <img id="selectedAgent" alt="" class="selected-agent">
+                            <span id="selectedTeam" class="team-pill">Team</span>
+                            <strong id="selectedModalName">Agent</strong>
+                        </div>
+                        <button id="closeDetailsButton" class="close-fab" type="button" aria-label="Close selected player loadout">X</button>
+                    </div>
+
+                    <div class="inventory-screen">
+                        <div id="weaponGroups" class="weapon-groups"></div>
+
+                        <aside class="right-rail">
+                            <section class="player-card-section" aria-label="Player card">
+                                <h2>Player Card</h2>
+                                <div id="playerCardPreview" class="player-card-preview">
+                                    <span id="selectedLevel">Level</span>
+                                    <strong id="selectedName">Player</strong>
+                                    <em id="selectedCardTitle"></em>
+                                </div>
+                            </section>
+
+                            <section class="expressions-section" aria-label="Expressions">
+                                <h2>Expressions</h2>
+                                <div id="expressionGrid" class="expression-grid"></div>
+                            </section>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <section id="emptyState" class="empty-state">
+                <h2>No match loadout cached</h2>
+                <p>Waiting for vRY websocket data on localhost.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -16,7 +16,10 @@ $color2: black;
 	animation: Gradient 5s ease-in-out infinite;
   	-webkit-background-clip: text;
   	-webkit-text-fill-color: transparent;		
-	width: 100%;
+	width: auto;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 	
 }
 

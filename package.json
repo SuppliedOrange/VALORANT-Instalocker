@@ -1,0 +1,68 @@
+{
+  "name": "valorant-utils",
+  "productName": "VALORANT Utils",
+  "version": "1.8.2",
+  "description": "VALORANT utilities with instalocking and rank checking",
+  "main": "electron/main.js",
+  "author": "Nanda070",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "publish": "electron-builder --win -p always"
+  },
+  "build": {
+    "appId": "com.nanda070.valorant-instalocker",
+    "productName": "VALORANT Utils",
+    "artifactName": "VALORANT-Utils-Setup-${version}.${ext}",
+    "files": [
+      "electron/**/*",
+      "web/**/*",
+      "TERMS.txt",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "integrations/rank-yoinker",
+        "to": "rank-yoinker",
+        "filter": [
+          "**/*",
+          "!__pycache__/**",
+          "!*.log"
+        ]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "web/favicon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "VALORANT Utils",
+      "uninstallDisplayName": "VALORANT Utils",
+      "license": "TERMS.txt",
+      "installerIcon": "web/favicon.ico",
+      "uninstallerIcon": "web/favicon.ico",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Nanda070",
+        "repo": "VALORANT-Utils"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  },
+  "devDependencies": {
+    "electron": "^29.4.6",
+    "electron-builder": "^24.13.3"
+  }
+}

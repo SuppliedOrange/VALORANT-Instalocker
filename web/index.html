@@ -2,7 +2,8 @@
 
     <head>
 
-        <title> VALORANT Instalocker </title>
+        <meta charset="UTF-8">
+        <title> VALORANT Utils </title>
         
         <link rel="stylesheet" href="./css/index.css">
         <link rel="stylesheet" href="./css/gradient_text.scss">
@@ -56,9 +57,42 @@
     </head>
 
     <body>
+
+        <nav class="app-tabs" aria-label="Application sections">
+            <button id="instalocker-tab" class="app-tab active" type="button">Instalocker</button>
+            <button id="rank-yoinker-tab" class="app-tab" type="button">Rank Checker</button>
+        </nav>
+
+        <div id="tos-gate" class="tos-gate hidden">
+            <div class="tos-card">
+                <h1>Условия использования</h1>
+                <div id="tos-text" class="tos-body">
+                    <p class="tos-lead">Редакция от 28 октября 2026. Сборку ведёт Nanda070. VALORANT Utils включает Instalocker и Rank Checker.</p>
+                    <h2>1. Что делает программа</h2>
+                    <p>VALORANT Utils включает Instalocker для выбора агента через локальный API клиента VALORANT и Rank Checker для отображения рангов, статистики и loadouts игроков во время матча. Программа не читает память игры, не меняет файлы игры и не нажимает кнопки в окне VALORANT.</p>
+                    <h2>2. Согласие</h2>
+                    <p>Установка и нажатие «Принимаю» означают, что вы прочитали эти условия и согласны с ними. Если вы не согласны, закройте программу и не устанавливайте её.</p>
+                    <h2>3. Риск для аккаунта</h2>
+                    <p>Такое использование клиентского API нарушает условия Riot Games. Блокировка агента может не успеть. Автор не обещает результат и не отвечает за наказания, включая ограничение или блокировку аккаунта. Этот риск вы принимаете сами.</p>
+                    <p>Программа не связана с Riot Games и не одобрена Riot Games.</p>
+                    <h2>4. Авторство</h2>
+                    <p>Instalocker основан на проекте SuppliedOrange. Основа Rank Stats взята из <a href="https://github.com/mdevio/VALORANT-rank-yoinker">mdevio/VALORANT-rank-yoinker</a>. Установщик, автообновление и эта сборка поддерживаются Nanda070.</p>
+                    <h2>5. Запреты</h2>
+                    <p>Нельзя продавать программу, сдавать её в аренду или выдавать за свою. Нельзя удалять указание авторов. Нельзя добавлять вредоносный код, кражу данных или атаки на сервисы Riot.</p>
+                    <h2>6. Что хранится на компьютере</h2>
+                    <p>Избранные агенты, настройки Rank Checker и отметка о принятии условий хранятся только на этом компьютере и никуда не отправляются. Проверка обновлений обращается к релизам GitHub репозитория Nanda070/VALORANT-Utils.</p>
+                    <h2>7. Контакт</h2>
+                    <p>По багам и установке: Discord Nandak070.</p>
+                </div>
+                <button id="tos-accept" class="tos-accept" type="button">Принимаю</button>
+            </div>
+        </div>
+
+        <div id="agent-menu" class="agent-menu hidden">
+            <button id="agent-menu-action" type="button">Favorite</button>
+        </div>
         
-        
-        <div class="d-flex flex-row">
+        <div id="instalocker-view" class="app-shell d-flex flex-row">
 
             <div id="left-panel" class="d-flex flex-column">
 
@@ -105,9 +139,9 @@
 
                         <div id="stop-button-flex-row" class="collapse">
 
-                            <div class="d-flex flex-row align-items-center text-center">
+                            <div class="stop-row">
 
-                                <button class="stop-button mt-5" onclick="stopLocking()"> STOP </button>
+                                <button class="stop-button" type="button" onclick="stopLocking()">STOP</button>
     
                             </div>
 
@@ -121,19 +155,18 @@
 
                     <div id="socials" class="d-flex flex-row justify-content-around">
 
-                        <button id="instagram" class="icon" onclick="openInstagram()">
+                        <button id="show-tos" class="icon" type="button" onclick="showTerms()">
 
-                            <img src="./assets/images/socials/instagram.svg">
-                            <p class="text-light mt-3" style="display: inline;"> kronsuki </p>
+                            <span class="tos-mark">TOS</span>
 
                         </button>
 
                         &nbsp &nbsp
 
-                        <button id="github" class="icon" onclick="openGithub()">
+                        <button id="github-nanda" class="icon" onclick="openGithubNanda()">
 
                             <img src="./assets/images/socials/github.svg">
-                            <p class="text-light" style="display: inline;"> suppliedorange </p>
+                            <p class="text-light" style="display: inline;"> Nanda070 </p>
 
                         </button>
 
@@ -144,6 +177,38 @@
             </div>
 
         </div>
+
+        <section id="rank-yoinker-view" class="rank-view hidden">
+            <div class="rank-subtabs">
+                <button id="rank-viewer-tab" class="rank-subtab active" type="button">Match Loadouts</button>
+                <button id="rank-stats-tab" class="rank-subtab" type="button">Rank Stats</button>
+                <button id="rank-output-toggle" class="rank-subtab rank-output-toggle" type="button" aria-expanded="false">Show output</button>
+            </div>
+            <div id="rank-viewer-page" class="rank-page">
+                <iframe id="rank-viewer-frame" title="Rank Checker match viewer"></iframe>
+            </div>
+            <div id="rank-stats-page" class="rank-page rank-stats-page hidden">
+                <div class="rank-stats-header">
+                    <div>
+                        <h1>Rank Stats</h1>
+                        <p id="rank-match-summary">Waiting for match data...</p>
+                    </div>
+                    <button id="rank-stats-state" class="rank-stats-state" type="button">MENU</button>
+                </div>
+                <div id="rank-player-grid" class="rank-player-grid">
+                    <div class="rank-empty-state">Enter a match to see player statistics.</div>
+                </div>
+            </div>
+            <div id="rank-console" class="rank-console hidden">
+                <div class="rank-console-title">
+                    <span>Rank Checker output</span>
+                    <span id="rank-connection-status" class="rank-status">CONNECTING</span>
+                </div>
+                <div id="rank-console-output" class="rank-output-list">
+                    <div class="rank-output-line">Starting Rank Checker...</div>
+                </div>
+            </div>
+        </section>
 
     </body>
 

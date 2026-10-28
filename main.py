@@ -2,7 +2,6 @@
 IMPORTS
 """
 import eel
-from screeninfo import get_monitors
 from valclient.client import Client
 import webbrowser
 import os
@@ -15,15 +14,11 @@ import time
 CONSTANTS
 """
 
-# Find the screen dimensions, reduce size x1.7 times. Scale window to that height.
-SCREEN_DIMENSIONS = (
-    list(get_monitors())[0].width // 1.7,
-    list(get_monitors())[0].height // 1.7,
-)
+SCREEN_DIMENSIONS = (853, 476)
 
 # Socials, don't touch! >:(
 INSTAGRAM = "https://www.instagram.com/kronsuki/"
-GITHUB = "https://github.com/SuppliedOrange/"
+GITHUB_NANDA = "https://github.com/Nanda070/"
 
 # Customize this to your preference
 LOOP_DELAY = 3 # Do not set this to less than 3 unless you know what you're doing.
@@ -66,7 +61,8 @@ AGENT_CODES = {
     "Vyse": "efba5359-4016-a1e5-7626-b1ae76895940",
     "Waylay": "df1cb487-4902-002e-5c17-d28e83e78588",
     "Miks": "7c8a4701-4de6-9355-b254-e09bc2a34b72",
-    "Veto": "92eeef5d-43b5-1d4a-8d03-b3927a09034b"
+    "Veto": "92eeef5d-43b5-1d4a-8d03-b3927a09034b",
+    "Hush": "ddd5a15c-4fbe-42fa-3789-11a55ca5ee04"
 }
 
 VALORANT_PROCESS_NAMES = [
@@ -323,6 +319,11 @@ def open_instagram():
 @eel.expose
 def open_github():
     webbrowser.open(GITHUB)
+
+
+@eel.expose
+def open_github_nanda():
+    webbrowser.open(GITHUB_NANDA)
 
 def check_chrome_installed():
 

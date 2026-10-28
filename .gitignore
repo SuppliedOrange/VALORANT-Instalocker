@@ -3,4 +3,8 @@ venv
 VALORANT Instalocker.spec
 build
 dist
+node_modules
+integrations/rank-yoinker/config.json
+integrations/rank-yoinker/logs/
+integrations/rank-yoinker/__pycache__/
 *.pyc
